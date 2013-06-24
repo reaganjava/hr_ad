@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/tx
+                    http://www.springframework.org/schema/tx/spring-tx.xsd
+                    http://www.springframework.org/schema/aop
+                    http://www.springframework.org/schema/aop/spring-aop.xsd">
+	 <bean id="authFunction4AdminInterceptor" class="com.dotoyo.buildjob.common.AuthFunction4AdminInterceptor" scope="prototype">
+       <property name="sysFunctionRoleService" ref="sysFunctionRoleService"/>
+     </bean>
+	<bean id="sysAdministratorMainAction" class="com.dotoyo.buildjob.action.AdministratorAction">
+		<property name="jobInfoService" ref="jobInfoService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+		<property name="sysUserRoleService" ref="sysUserRoleService"/>
+		<property name="certificateAdminService" ref="certificateAdminService"/>
+		<property name="userService" ref="userService"></property>
+		<property name="applyJobAdminService" ref="applyJobAdminService"/>
+		<property name="salonSearchService" ref="salonSearchService"/>
+	</bean>
+	<!-- System manager increment -->
+	<bean id="sysIncrementServiceNameMainAction" class="com.dotoyo.buildjob.action.SysIncrementServiceNameMainAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysIncrementTalentsFoundSettingAction" class="com.dotoyo.buildjob.action.SysIncrementTalentsFoundSettingAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysIncrementTalentsFoundOfflineSettingAction" class="com.dotoyo.buildjob.action.SysIncrementTalentsFoundOfflineSettingAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundOfflineSettingService" ref="sysIncrementTalentsFoundOfflineSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysIncrementAdvertSettingAction" class="com.dotoyo.buildjob.action.SysIncrementAdvertSettingAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysIncrementHangCardSettingAction" class="com.dotoyo.buildjob.action.SysIncrementHangCardSettingAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysIncrementHuntCardSettingAction" class="com.dotoyo.buildjob.action.SysIncrementHuntCardSettingAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysIncrementRecruitSettingAction" class="com.dotoyo.buildjob.action.SysIncrementRecruitSettingAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysOrderAction" class="com.dotoyo.buildjob.action.SysOrderAction" scope="session">
+		<property name="sysOrderService" ref="sysOrderService"/>
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysParameterService" ref="sysParameterService"/>
+	</bean>
+	<bean id="sysFunctionAction" class="com.dotoyo.buildjob.action.SysFunctionAction" scope="session">
+		<property name="sysFunctionService" ref="sysFunctionService"/>
+	</bean>
+	<bean id="sysRoleAction" class="com.dotoyo.buildjob.action.SysRoleAction" scope="session">
+		<property name="sysRoleService" ref="sysRoleService"/>
+		<property name="sysUserRoleService" ref="sysUserRoleService"/>
+	</bean>
+	<bean id="sysFunctionRoleAction" class="com.dotoyo.buildjob.action.SysFunctionRoleAction" scope="session">
+		<property name="sysRoleService" ref="sysRoleService"/>
+		<property name="sysFunctionRoleService" ref="sysFunctionRoleService"/>
+	</bean>
+	<bean id="sysFilterWordAction" class="com.dotoyo.buildjob.action.SysFilterWordAction" scope="session">
+		<property name="sysFilterWordService" ref="sysFilterWordService"/>
+	</bean>
+	<bean id="sysMemberAction" class="com.dotoyo.buildjob.action.SysMemberAction" scope="session">
+		<property name="sysRoleService" ref="sysRoleService"/>
+		<property name="sysUserRoleService" ref="sysUserRoleService"/>
+		<property name="sysFunctionRoleService" ref="sysFunctionRoleService"/>
+	</bean>
+	<bean id="sysIncrementManageAction" class="com.dotoyo.buildjob.action.SysIncrementManageAction" scope="session">
+		<property name="sysIncrementServiceNameMaintainanceService" ref="sysIncrementServiceNameMaintainanceService"/>
+		<property name="sysIncrementTalentsFoundSettingService" ref="sysIncrementTalentsFoundSettingService"/>
+		<property name="sysIncrementHangCardSettingService" ref="sysIncrementHangCardSettingService"/>
+		<property name="sysIncrementHuntCardSettingService" ref="sysIncrementHuntCardSettingService"/>
+		<property name="sysIncrementRecruitSettingService" ref="sysIncrementRecruitSettingService"/>
+		<property name="sysIncrementAdvertSettingService" ref="sysIncrementAdvertSettingService"/>
+		<property name="sysOrderService" ref="sysOrderService"/>
+	</bean>
+	<bean id="sysPointSettingAction" class="com.dotoyo.buildjob.action.SysPointSettingAction" scope="session">
+		<property name="sysPointService" ref="sysPointService"/>
+	</bean>
+	<bean id="sysPointAdjustAction" class="com.dotoyo.buildjob.action.SysPointAdjustAction" scope="session">
+		<property name="sysPointService" ref="sysPointService"/>
+		<property name="userService" ref="userService"/>
+	</bean>
+	<bean id="sysUserChangePwdAction" class="com.dotoyo.buildjob.action.ChangePasswordAction" scope="session">
+		<property name="sysUserRoleAdminService" ref="sysUserRoleAdminService"/>
+	</bean>
+	<bean id="sysUserLoginAction" class="com.dotoyo.buildjob.action.LoginAction" scope="prototype">
+		<property name="sysUserRoleAdminService" ref="sysUserRoleAdminService"/>
+		<property name="captchaService" ref="captchaService"/>
+	</bean>
+	<bean id="sysLogAction" class="com.dotoyo.buildjob.action.SysLogAction" scope="session">
+		<property name="sysLogService" ref="sysLogService"/>
+	</bean>
+	<bean id="sysAdAction" class="com.dotoyo.buildjob.action.SysAdAction" scope="session">
+		<property name="sysAdService" ref="sysAdService"/>
+	</bean>
+	<bean id="sysRoleAdminAction" class="com.dotoyo.buildjob.action.SysRoleAdminAction" scope="session">
+		<property name="sysRoleAdminService" ref="sysRoleAdminService"/>
+		<property name="sysUserRoleAdminService" ref="sysUserRoleAdminService"/>
+	</bean>
+	<bean id="sysFunctionRoleAdminAction" class="com.dotoyo.buildjob.action.SysFunctionRoleAdminAction" scope="session">
+		<property name="sysRoleAdminService" ref="sysRoleAdminService"/>
+		<property name="sysFunctionRoleAdminService" ref="sysFunctionRoleAdminService"/>
+	</bean>
+	<bean id="sysMemberAdminAction" class="com.dotoyo.buildjob.action.SysMemberAdminAction" scope="session">
+		<property name="sysRoleAdminService" ref="sysRoleAdminService"/>
+		<property name="sysUserRoleAdminService" ref="sysUserRoleAdminService"/>
+		<property name="sysFunctionRoleAdminService" ref="sysFunctionRoleAdminService"/>
+	</bean>
+    <!--沙龙管理后台 -->
+	<bean id="salonAdminAction" class="com.dotoyo.buildjob.action.SalonAdminAction" scope="prototype">
+		<property name="salonSearchService" ref="salonSearchService"/>
+		<property name="salonService" ref="salonService"/>
+		<property name="salonAdminService" ref="salonAdminService"/>
+		<property name="salonManageService" ref="salonManageService"/>
+		<property name="sysParameterService" ref="sysParameterService"/>
+		<property name="sysPointService" ref="sysPointService"/>
+		<property name="userService" ref="userService"/>
+		<property name="dataOperationService" ref="dataOperationService"/>
+	</bean>
+	<bean id="buildJobAction" class="com.dotoyo.buildjob.common.action.BuildJobAction" scope="prototype" >
+	</bean>
+	<!--招聘管理 -->
+	<bean id="jobSideManagementAction" class="com.dotoyo.buildjob.action.JobSideManagementAction" scope="prototype">
+		<property name="jobInfoService" ref="jobInfoService"/>
+		<property name="userService" ref="userService"/>
+	</bean>
+	<!-- 系统管理后台：证书需求管理 -->
+	<bean id="certNeedsManageAction" class="com.dotoyo.buildjob.action.CertNeedsManageAction" scope="prototype">
+		<property name="certificateAdminService" ref="certificateAdminService"/>
+		<property name="certificateService" ref="certificateService"/>
+	</bean>
+	<!-- 系统管理后台：证书管理 -->
+	<bean id="personalCertManageAction" class="com.dotoyo.buildjob.action.PersonalCertManageAction" scope="prototype">
+		<property name="certificateAdminService" ref="certificateAdminService"/>
+		<property name="certificateService" ref="certificateService"/>
+	</bean>
+	<!-- 系统管理后台：数据统计 -->
+	<bean id="dataStatisticAction" class="com.dotoyo.buildjob.action.DataStatisticAction" scope="prototype">
+		<property name="certificateAdminService" ref="certificateAdminService"/>
+		<property name="jobInfoService" ref="jobInfoService"/>
+	</bean>
+	<!--线下人才库-->
+	<bean id="lineTalentPoolAction" class="com.dotoyo.buildjob.action.LineTalentPoolAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+		<property name="applyJobService" ref="applyJobService"></property>
+	</bean>
+	<!--求职管理-->
+	<bean id="applyJobManageAction" class="com.dotoyo.buildjob.action.ApplyJobManageAction" scope="prototype">
+		<property name="applyJobAdminService" ref="applyJobAdminService"/>
+		<property name="applyJobService" ref="applyJobService"/>
+		<property name="jobInfoService" ref="jobInfoService"/>
+	</bean>
+	<!--线下人才匹配  -->
+	<bean id="talentMatchAction" class="com.dotoyo.buildjob.action.TalentMatchAction" scope="prototype">
+		<property name="applyJobService" ref="applyJobService"/>
+		<property name="jobInfoService" ref="jobInfoService"/>
+		<property name="offlineSearchResultService" ref="offlineSearchResultService"/>
+		<property name="peopleExcavateService" ref="peopleExcavateService"/>
+	</bean>
+</beans>

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="dotoyo" extends="json-default">
+		<action name="loadCity" class="buildJobAction" method="loadCityData">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="loadArea" class="buildJobAction" method="loadArea">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	<!-- administrator start -->
+	<!-- administrator main page -->
+	<package name="sysLoginMain" extends="json-default" namespace="/sys">
+		<global-results>
+			<result name="error">
+				/jsp/error/serviceError.jsp
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+		<!-- system user login -->
+		<action name="sysUserLogin!*" class="sysUserLoginAction" method="{1}">
+			<result name="main">/jsp/login.jsp</result>
+			<result name="success" type="redirectAction">/sys/sysMainAction!init.action</result>
+			<result name="noRightPage">/jsp/noRightAccess.jsp</result>
+		</action>
+	</package>
+	<package name="sysAdministratorMain" namespace="/sys" extends="global">
+
+		<action name="sysMainAction!*" class="sysAdministratorMainAction" method="{1}">
+		    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/administrator.jsp</result>
+		</action>
+		<!-- Service name maintainance  -->
+		<action name="serviceNameMainAction!*" class="sysIncrementServiceNameMainAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/service-name.jsp</result>
+			<result name="add">/jsp/increment/service-name-increase.jsp</result>
+			<result name="edit">/jsp/increment/service-name-edit.jsp</result>
+		</action>
+		<!-- Service talents found setting -->
+		<action name="talentsFoundSetting!*" class="sysIncrementTalentsFoundSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/talent-mining.jsp</result>
+			<result name="add">/jsp/increment/talent-mining-increase.jsp</result>
+			<result name="edit">/jsp/increment/talent-mining-edit.jsp</result>
+		</action>
+		<action name="talentsFoundOfflineSetting!*" class="sysIncrementTalentsFoundOfflineSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/talent-mining-offline.jsp</result>
+			<result name="add">/jsp/increment/talent-mining-increase-offline.jsp</result>
+			<result name="edit">/jsp/increment/talent-mining-edit-offline.jsp</result>
+		</action>
+		<!-- Service advertising setting -->
+		<action name="advertSetting!*" class="sysIncrementAdvertSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/advertising.jsp</result>
+			<result name="add">/jsp/increment/advertising-increase.jsp</result>
+			<result name="edit">/jsp/increment/advertising-edit.jsp</result>
+		</action>
+		<!-- Service hang card setting -->
+		<action name="hangCardSetting!*" class="sysIncrementHangCardSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/hanging-card.jsp</result>
+			<result name="add">/jsp/increment/hanging-card-increase.jsp</result>
+			<result name="edit">/jsp/increment/hanging-card-eidt.jsp</result>
+		</action>
+		<!-- Service hunt card setting -->
+		<action name="huntCardSetting!*" class="sysIncrementHuntCardSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/certificate-services.jsp</result>
+			<result name="add">/jsp/increment/certificate-services-increase.jsp</result>
+			<result name="edit">/jsp/increment/certificate-services-edit.jsp</result>
+		</action>
+		<!-- Service hunt card setting -->
+		<action name="recruitSetting!*" class="sysIncrementRecruitSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/recruitment-services.jsp</result>
+			<result name="add">/jsp/increment/recruitment-services-increase.jsp</result>
+			<result name="edit">/jsp/increment/recruitment-services-edit.jsp</result>
+		</action>
+		<!-- Order manage -->
+		<action name="sysOrder!*" class="sysOrderAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/order/order-management.jsp</result>
+			<result name="edit">/jsp/order/order-management-edit.jsp</result>
+			<result name="assign">/jsp/order/order-management-assign.jsp</result>
+		</action>
+		<!-- function manage -->
+		<action name="sysFunction!*" class="sysFunctionAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/permission/functionManage.jsp</result>
+			<result name="edit">/jsp/permission/functionManage-edit.jsp</result>
+		</action>
+		<!-- role manage -->
+		<action name="sysRole!*" class="sysRoleAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/permission/roleManage.jsp</result>
+			<result name="edit">/jsp/permission/roleManage-edit.jsp</result>
+			<result name="add">/jsp/permission/roleManage-add.jsp</result>
+			<result name="assign">/jsp/permission/roleManage-assign.jsp</result>
+		</action>
+		<!-- function role manage -->
+		<action name="sysFunctionRole!*" class="sysFunctionRoleAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/permission/permissionSetting.jsp</result>
+			<result name="assign">/jsp/permission/permissionSetting-assign.jsp</result>
+		</action>
+		<!-- filter words manage -->
+		<action name="sysFilterWord!*" class="sysFilterWordAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/filterWords/filterWords.jsp</result>
+			<result name="edit">/jsp/filterWords/filterWords-edit.jsp</result>
+			<result name="add">/jsp/filterWords/filterWords-add.jsp</result>
+		</action>
+		<!-- member  manage -->
+		<action name="sysMember!*" class="sysMemberAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/member/member_manage.jsp</result>
+			<result name="edit">/jsp/member/member_manage_edit.jsp</result>
+			<result name="assign">/jsp/member/member_manage_assign.jsp</result>
+			<result name="assign functions">/jsp/member/member_manage_assignfun.jsp</result>
+		</action>
+		<action name="sysMemberReset!*" class="sysMemberAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/member/member_reset.jsp</result>
+			<result name="edit">/jsp/member/member_reset_password.jsp</result>
+		</action>
+		<action name="sysUserChangePwd!*" class="sysUserChangePwdAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/member/change-password.jsp</result>
+		</action>
+		<!-- administrator permission manage -->
+		<action name="sysRoleAdmin!*" class="sysRoleAdminAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/admin/roleManage.jsp</result>
+			<result name="edit">/jsp/admin/roleManage-edit.jsp</result>
+			<result name="add">/jsp/admin/roleManage-add.jsp</result>
+			<result name="assign">/jsp/admin/roleManage-assign.jsp</result>
+		</action>
+		<action name="sysFunctionRoleAdmin!*" class="sysFunctionRoleAdminAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/admin/permissionSetting.jsp</result>
+			<result name="assign">/jsp/admin/permissionSetting-assign.jsp</result>
+		</action>
+		<action name="sysMemberAdmin!*" class="sysMemberAdminAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/admin/member_manage.jsp</result>
+			<result name="edit">/jsp/admin/member_manage_edit.jsp</result>
+			<result name="add">/jsp/admin/member_manage_add.jsp</result>
+			<result name="assign">/jsp/admin/member_manage_assign.jsp</result>
+			<result name="assign functions">/jsp/admin/member_manage_assignfun.jsp</result>
+		</action>
+		<!-- end -->
+		<!-- increment service manage -->
+		<action name="sysIncrementManage!*" class="sysIncrementManageAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/increment/service-management.jsp</result>
+			<result name="view">/jsp/increment/service-management-view.jsp</result>
+		</action>
+		<!-- increment service manage -->
+		<action name="sysPointSetting!*" class="sysPointSettingAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/point/point-setting.jsp</result>
+			<result name="edit">/jsp/point/point-setting-edit.jsp</result>
+		</action>
+		<action name="sysPointAdjust!*" class="sysPointAdjustAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/point/point-adjust.jsp</result>
+		</action>
+		<action name="sysLog!*" class="sysLogAction" method="{1}">
+    	    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main">/jsp/sys/sys-log.jsp</result>
+		</action>
+		<action name="sysAd!*" class="sysAdAction" method="{1}">
+		    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name="excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="main" >/jsp/ad/advert-manage.jsp</result>
+			<result name="edit">/jsp/ad/advert-manage-edit.jsp</result>
+			<result name="add">/jsp/ad/advert-manage-add.jsp</result>
+		</action>
+
+	    <action name="salonAdminAction!*" class="salonAdminAction" method="{1}">
+   	        <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name=" excludeMethods">
+			</param>
+    	    </interceptor-ref>
+			<result name="audiSalon">/jsp/salonManage/audiSalon.jsp</result>
+			<result name="setSalon">/jsp/salonManage/setSalon.jsp</result>
+			<result name="setSalonArticle">/jsp/salonManage/setSalonArticle.jsp</result>
+			<result name="hostUnitManage">/jsp/salonManage/hostUnitManage.jsp</result>
+			<result name="addHostUnit">/jsp/salonManage/addHostUnit.jsp</result>
+			<result name="modifyHostUnit">/jsp/salonManage/modifyHostUnit.jsp</result>
+			<result name="setSalonHomePage">/jsp/salonManage/setSalonHomePageDisplay.jsp</result>
+			<result name="setConfirmSalonHomePage">/jsp/salonManage/confirmSetSalonHomePage.jsp</result>
+
+			<result name="salonOfflinePictureList">/jsp/salonManage/salonOfflinePictureList.jsp</result>
+			<result name="salonOfflineVideoList">/jsp/salonManage/salonOfflineVideoList.jsp</result>
+			<result name="pictureList4Salon">/jsp/salonManage/pictureList4Salon.jsp</result>
+			<result name="videoList4Salon">/jsp/salonManage/videoList4Salon.jsp</result>
+
+			<result name="salonArticleManage">/jsp/salonManage/salonArticleManage.jsp</result>
+			<result name="commentManage">/jsp/salonManage/commentManage.jsp</result>
+
+		 </action>
+
+		 <action name="jobSideManagementAction!*" class="jobSideManagementAction" method="{1}">
+   	        <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name=" excludeMethods">
+			</param>
+    	    </interceptor-ref>
+		 	<result name="managementCompaniesJobInformation">/jsp/jobSideManagement/manageCompaniesJobInfo.jsp</result>
+		 	<result name="viewJobs">/jsp/jobSideManagement/companyJobs.jsp</result>
+		 	<result name="companiesJobManage">/jsp/jobSideManagement/companiesJobManage.jsp</result>
+		 	<result name="redirectjobManage" type="redirectAction">jobSideManagementAction!companiesJobManage.action</result>
+		 	<result name="redirectToViewNewJobs" type="redirectAction">jobSideManagementAction!viewNewJobs.action</result>
+		 	<result name="jobInfoDetail">/jsp/jobSideManagement/jobInfoDetail.jsp</result>
+		 </action>
+
+
+		 <action name="certNeedsManageAction!*" class="certNeedsManageAction" method="{1}">
+		 	<interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name=" excludeMethods">
+			</param>
+    	    </interceptor-ref>
+		 	<result name="viewAllCertNeeds4Admin">/jsp/certNeedsManage/certNeedsList.jsp</result>
+		 	<result name="viewCertNeedsDetail4Admin">/jsp/certNeedsManage/certNeedsDetail.jsp</result>
+		 </action>
+		 <action name="personalCertManageAction!*" class="personalCertManageAction" method="{1}">
+		 	<interceptor-ref name="defaultStack" />
+		    <interceptor-ref name="authFunction4AdminInterceptor">
+	    	    <param name="excludeMethods">
+				</param>
+    	    </interceptor-ref>
+		 	<result name="viewPersonalCertList4Admin">/jsp/personalCertManage/personalCertList.jsp</result>
+		 	<result name="viewPersonalCertDetail4Admin">/jsp/personalCertManage/personalCertDetail.jsp</result>
+		 </action>
+
+		 <action name="lineTalentPoolAction!*" class="lineTalentPoolAction" method="{1}">
+		 	<interceptor-ref name="defaultStack" />
+		    <interceptor-ref name="authFunction4AdminInterceptor">
+	    	    <param name="excludeMethods">
+				</param>
+    	    </interceptor-ref>
+		 	<result name="lineTalentPool">/jsp/LineTalentpool/lineTalentpoolIndex.jsp</result>
+		 	<result name="redirectLineTalentPool" type="redirectAction">lineTalentPoolAction!loadLineTalentPool.action</result>
+		 	<result name="redirectToViewNewTalent" type="redirectAction">lineTalentPoolAction!viewNewTalent.action</result>
+		 	<result name="editInterviewStatus" type="redirectAction">
+		 		lineTalentPoolAction!loadLineTalentPool.action
+		 	</result>
+		 	<result name="toAddRecommendation">/jsp/LineTalentpool/addRecommendation.jsp</result>
+		 </action>
+		 <!-- 数据统计 -->
+		 <action name="dataStatisticAction!*" class="dataStatisticAction" method="{1}">
+		    <interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name=" excludeMethods">
+			</param>
+    	    </interceptor-ref>
+		 	<result name="viewCertHunterStatistic">/jsp/DataStatistic/certHunterStatistic.jsp</result>
+		 	<result name="jobApplicantsStatistics">/jsp/DataStatistic/jobApplicantsStatistics.jsp</result>
+		 	<result name="exportHunterStatisticAsExcel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="data.xls"</param>
+				<param name="inputName">HunterStatisticAsExcel</param>
+				<param name="bufferSize">2048</param>
+		 	</result>
+
+		 	<result name="exportJobApplicantsStatisticsAsExcel" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="jobApplicantsStatistics.xls"</param>
+				<param name="inputName">JobApplicantsStatisticsAsExcel</param>
+				<param name="bufferSize">2048</param>
+		 	</result>
+
+		 	<!--
+		 	 <result name="exportHunterStatisticAsExcel">/jsp/DataStatistic/certHunterStatisticData.jsp</result>
+		 	-->
+		 	 <result name="printCertHunterStatistic">/jsp/DataStatistic/printCertHunterStatisticData.jsp</result>
+		 </action>
+		 <!-- 求职管理 -->
+		 <action name="applyJobManageAction!*" class="applyJobManageAction" method="{1}">
+		 	<interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+	    	    <param name="excludeMethods">
+				</param>
+    	    </interceptor-ref>
+		 	<result name="viewApplyJobIntention4Admin">/jsp/applyJobManage/applyJobIntentionList.jsp</result>
+		 	<result name="viewJobApplyRecordList4Admin">/jsp/applyJobManage/jobApplyRecordList.jsp</result>
+		 </action>
+		 <!-- 线下人才匹配 -->
+		 <action name="talentMatchAction!*" class="talentMatchAction" method="{1}">
+		 	<interceptor-ref name="defaultStack" />
+    	    <interceptor-ref name="authFunction4AdminInterceptor">
+    	    <param name=" excludeMethods">
+			</param>
+    	    </interceptor-ref>
+		 	<result name="viewTalentList">/jsp/talentMatch/talentList.jsp</result>
+		 	<result name="matchPosition4Personal">/jsp/talentMatch/matchPosition4Personal.jsp</result>
+		 	<result name="printPosition4Personal">/jsp/talentMatch/printPosition4Personal.jsp</result>
+		 	<result name="viewOfflineSearchResultList">/jsp/talentMatch/offlineSearchResultList.jsp</result>
+		 	<result name="matchTalent4Enterprise">/jsp/talentMatch/matchTalent4Enterprise.jsp</result>
+		 	<result name="printTalent4Enterprise">/jsp/talentMatch/printTalent4Enterprise.jsp</result>
+		 </action>
+	</package>
+</struts>

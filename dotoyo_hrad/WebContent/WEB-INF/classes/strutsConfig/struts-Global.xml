@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>	
+
+	<package name="global" extends="json-default">
+	
+		<!-- System Interceptor Configuration -->
+		<interceptors>			
+			<interceptor name="authFunction4AdminInterceptor" class="authFunction4AdminInterceptor" />
+		</interceptors>
+		
+		<!-- System Result Configuration -->
+		<global-results>
+			
+			<result name="noRightPage" type="redirectAction">
+				<param name="namespace">/sys</param>
+				<param name="actionName">sysUserLogin!noRightAccess.action</param>
+			</result>
+			<result name="login">/jsp/login.jsp</result>
+			<result name="error">
+				/jsp/error/serviceError.jsp
+			</result>
+					   
+		</global-results>	
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+	</package>
+	 
+</struts>
